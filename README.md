@@ -1,27 +1,14 @@
-# Simple Map of Schools
+# Runda Land Information System
 
-<p>
-  <a href="https://twitter.com/AlphaOmondi" target="_blank">
-    <img alt="Twitter: AlphaOmondi" src="https://img.shields.io/twitter/follow/AlphaOmondi.svg?style=social" />
-  </a>
-</p>
 
-👋 This simple map is Built with GeoDjango,Docker,NGINX,React and Leaflet.
+👋 This simple web application is Built with GeoDjango and Leaflet.
 
 ## Run the Application
 
 ```
-cd GeoDjango-Schools-Map
-run the command: make build
-navigate to localhost:8080
-```
-
-If you prefer not using Makefiles
-
-```
-cd GeoDjango-Schools-Map
-run the command: docker-compose --build -d --remove-orphans
-navigate to localhost:8080
+cd RundaLis
+run the command: pthon manage.py runserver
+navigate to localhost:8000
 ```
 
 ## License
