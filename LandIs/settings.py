@@ -55,7 +55,7 @@ else:
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rundalis.herokuapp.com']
 
 DATABASES = {
     'default': {
@@ -187,6 +187,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, '/static'),)
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (-1.22488, 36.827164),
