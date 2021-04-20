@@ -55,7 +55,7 @@ else:
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-ALLOWED_HOSTS = ['rundalis.herokuapp.com']
+ALLOWED_HOSTS = []
 
 DATABASES = {
     'default': {
@@ -67,6 +67,18 @@ DATABASES = {
         'PORT': '5432'
     },
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'NAME': 'd9lfigjp2lj980',
+#         'USER': 'dlkzpuzvqrzwfz',
+#         'HOST': 'ec2-54-159-175-113.compute-1.amazonaws.com',
+#         'PASSWORD': '33b2754d7e112e2e0997bf95355d9d4a7e71fe00cdb3f68d64af86c6cb1a9e64',
+#         'PORT': '5432'
+#     },
+# }
 
 # Application definition
 INSTALLED_APPS = [
