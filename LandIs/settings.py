@@ -29,33 +29,27 @@ if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     EMAIL_HOST_USER = 'sambulikevin@gmail.com'
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-    # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    # EMAIL_HOST = 'smtp.gmail.com'
+
+    # EMAIL_HOST = 'smtp.mailgun.org'
     # EMAIL_PORT = 587
-    # EMAIL_HOST_USER = 'sambulikevin@gmail.com'
-    # EMAIL_HOST_PASSWORD = 'kevoh1995'
+    # EMAIL_HOST_USER = 'postmaster@sandboxbc8f324eb8104fea958b1b95394167c9.mailgun.org'
+    # EMAIL_HOST_PASSWORD = 'f6d094eddcd50e8df6476ab79ddcf554-71b35d7e-786f6a53'
     # EMAIL_USE_TLS = True
     # EMAIL_USE_SSL = False
     # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
 else:
-    # EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-    # # SENDGRID_API_KEY = os.environ.get("Kfo5LgfZQz-jmMBSjvLN3Q.StPrIwI__KBurynBiKjq816LKm8pM5FNw_Wh-LcHLQk")
-    # SENDGRID_API_KEY = 'Kfo5LgfZQz-jmMBSjvLN3Q'
-    # SENDGRID_SANDBOX_MODE_IN_DEBUG = True
-    # SENDGRID_ECHO_TO_STDOUT = True
-    # AUTHENTICATION_BACKENDS = ['path.to.auth.module.EmailBackend']
-    # EMAIL_HOST = 'smtp.sendgrid.net'
-    # EMAIL_HOST_PASSWORD = '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'
-    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST = 'smtp.mailgun.org'
     EMAIL_PORT = 587
-    EMAIL_HOST_USER = 'sambulikevin@gmail.com'
-    EMAIL_HOST_PASSWORD = 'kevoh1995'
+    EMAIL_HOST_USER = 'postmaster@sandboxbc8f324eb8104fea958b1b95394167c9.mailgun.org'
+    EMAIL_HOST_PASSWORD = 'f6d094eddcd50e8df6476ab79ddcf554-71b35d7e-786f6a53'
     EMAIL_USE_TLS = True
     EMAIL_USE_SSL = False
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0c08c280dc9d.ngrok.io', '127.0.0.1', 'localhost']
 
 DATABASES = {
     'default': {

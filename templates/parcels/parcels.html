@@ -24,6 +24,23 @@
     <script>
         var dataurl = '{% url "data" %}';
 
+        function highlightFeature(e) {
+            var layer = e.target;layer.setStyle({
+                weight: 5,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.7
+            });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+}
+        function resetHighlight(e) {geojson.resetStyle(e.target);}
+        function zoomToFeature(e) {map.fitBounds(e.target.getBounds());}
+
+
+
         window.addEventListener("map:init", function (event)
         {
             var map = event.detail.map;
@@ -44,14 +61,19 @@
                                     '<p>Parcel Number: ' + feature.properties.lr_no + '</p> ' +
                                     '<p>Area: ' + feature.properties.area_ha + ' Ha</p>' +
                                     '<p>Perimeter: ' + feature.properties.perimeter + ' M</p>').openPopup();
-                            } ,
+                                layer.on({
+                                    mouseover: highlightFeature,
+                                    mouseout: resetHighlight,
+                                    click: zoomToFeature });
+                            },
                             style:
                                 {
                                     fillColor: 'yellow',
                                     fillOpacity: 0.2,
                                     color: '#c0c0c0',
                                 }
-                        }).addTo(map);
+                        }
+                    ).addTo(map);
                });
         });
     </script>

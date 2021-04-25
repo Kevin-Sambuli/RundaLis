@@ -1,10 +1,5 @@
 import folium
 from folium import plugins
-import psycopg2
-from django.conf import settings
-
-conn = psycopg2.connect(dbname="LandIs", user="postgres", password="kevoh", host="127.0.0.1", port="5432")
-cur = conn.cursor()
 
 
 def color_producer(perimeter):
@@ -18,15 +13,7 @@ def color_producer(perimeter):
 
 def my_map(land_parcels, parcel):
     extent = [-1.22488, 36.82467]
-    m = folium.Map(location=extent, zoom_start=14, control_scale=True,
-
-        # tiles=
-        # [
-        #     ("Satellite", "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {"attr": "control forms"}),
-        #     ("Topography", "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {"attr": "Map data:"}),
-        #     ("Stamen Toner", "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}",{"attr":"Map tiles"}),
-        # ]
-    )
+    m = folium.Map(location=extent, zoom_start=14, control_scale=True)
     m.choropleth(
         geo_data=land_parcels,
         name='Runda Parcels',
@@ -44,14 +31,9 @@ def my_map(land_parcels, parcel):
     folium.plugins.MeasureControl(position='topleft', primary_length_unit='meters', secondary_length_unit='miles',
                                   primary_area_unit='sqmeters', secondary_area_unit='acres').add_to(m)
 
-    # style_function = lambda x: {'fillColor': 'green' if x['properties']['perimeter'] < 185
-    # else 'orange' if 185 <= x['properties']['perimeter'] < 190 else 'blue'},
-    # highlight_function = None, name = 'parcels',
-    # overlay = True, control = True, show = True, smooth_factor = None, tooltip = 'my parcels',
-    # embed = True).add_to(m)
     folium.features.GeoJson(parcel, style_function=lambda x: style_parcel, highlight_function=None, name='parcels',
-                            overlay=True, control=True, show=True, smooth_factor=None, tooltip='my parcels',
-                            embed=True).add_to(m)
+                            overlay=True, control=True, popup=parcel, show=True, smooth_factor=None,
+                            tooltip='my parcel', embed=True).add_to(m)
 
     folium.plugins.Fullscreen(position='topleft', title='Full Screen', title_cancel='Exit Full Screen',
                               force_separate_button=False)

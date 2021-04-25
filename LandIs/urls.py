@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('parcels/', include('parcels.urls')),
-    # path('payments/', include('payments.urls')),
+    path('payments/', include('payments.urls')),
     path('ownership/', include('ownership.urls')),
     path('transaction/', include('transaction.urls')),
 ]
