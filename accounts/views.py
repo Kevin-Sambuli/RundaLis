@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
@@ -22,19 +23,20 @@ def registration_view(request):
             id_no = form.cleaned_data.get('id_no')
             dob = form.cleaned_data.get('dob')
             phone = form.cleaned_data.get('phone')
-            raw_password = form.cleaned_data.get('password1')
+            password = form.cleaned_data.get('password')
 
             # authenticate the user if information is correct and valid
             account = authenticate(first_name=first_name, last_name=last_name, email=email,
                                    username=username, gender=gender, kra_pin=kra_pin, id_no=id_no,
-                                   dob=dob, phone=phone, password=raw_password)
+                                   dob=dob, phone=phone, password=password)
 
             login(request, account)
-            subject = 'Hi,' + first_name + last_name
-            message = 'Thank you for registering to our services'
+            subject = 'Runda LIS registration.'
+            message = f'Hi {first_name} {last_name},Thank you for registering to our services'
 
-            send_mail(subject, message, 'from@example.com', [email], fail_silently=False, )
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email], fail_silently=False, )
 
+            # return redirect('success')
             return redirect('home')
         else:
             context['registration_form'] = form

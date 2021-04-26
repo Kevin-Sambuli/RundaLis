@@ -1,16 +1,18 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
     def create_user(self, email, username, first_name, last_name, gender, dob,
-                    kra_pin, id_no, phone, password=123456789):
+                    kra_pin, id_no, phone, password):
         if not email:
             raise ValueError('Users must have an email address')
         if not username:
@@ -31,16 +33,9 @@ class UserManager(BaseUserManager):
             raise ValueError('Users must provide his/her age')
 
         user = self.model(
-            email=self.normalize_email(email),
-            username=username,
-            first_name=first_name,
-            last_name=last_name,
-            gender=gender,
-            dob=dob,
-            kra_pin=kra_pin,
-            id_no=id_no,
-            phone=phone
-        )
+            email=self.normalize_email(email), username=username, first_name=first_name,
+            last_name=last_name, gender=gender, dob=dob, kra_pin=kra_pin, id_no=id_no, phone=phone
+            )
 
         # password=self.make_random_password(length=10,
         #                       allowed_chars='abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'),
@@ -147,12 +142,18 @@ class Account(AbstractBaseUser):
         #           fail_silently=False)
 
 
-# @receiver(post_save, sender=Account)
-# def create_user_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Account.objects.create(user=instance)
-#
-#
-# @receiver(post_save, sender=Account)
-# def save_user_profile(sender, instance, **kwargs):
-#     instance.profile.save()
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
+
+
+@receiver(post_save, sender=Account)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Account.objects.create(user=instance)
+
+
+@receiver(post_save, sender=Account)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()

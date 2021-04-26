@@ -16,7 +16,10 @@ urlpatterns = [
     path('must_authenticate/', must_authenticate_view, name="must_authenticate"),
     path('register/', views.registration_view, name='register'),
     path('update/', views.account_view, name='account'),
+
     path('my_parcels_map/', TemplateView.as_view(template_name='accounts/realtime_location.html'), name='location'),
+    path('success/', TemplateView.as_view(template_name='accounts/success.html'), name='success'),
+
     path('password_change/done/',
          auth_views.PasswordChangeDoneView.as_view(template_name='accounts/password_change_done.html'),
          name='password_change_done'),

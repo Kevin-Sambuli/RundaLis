@@ -29,16 +29,13 @@ if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     EMAIL_HOST_USER = 'sambulikevin@gmail.com'
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-    # EMAIL_HOST = 'smtp.mailgun.org'
-    # EMAIL_PORT = 587
-    # EMAIL_HOST_USER = 'postmaster@sandboxbc8f324eb8104fea958b1b95394167c9.mailgun.org'
-    # EMAIL_HOST_PASSWORD = 'f6d094eddcd50e8df6476ab79ddcf554-71b35d7e-786f6a53'
+    # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    # EMAIL_HOST = 'smtp.gmail.com'
+    # EMAIL_HOST_USER = 'sambulikevin@gmail.com'
+    # EMAIL_HOST_PASSWORD = 'kevoh1995'
     # EMAIL_USE_TLS = True
-    # EMAIL_USE_SSL = False
+    # EMAIL_PORT = 587
     # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
 else:
     EMAIL_HOST = 'smtp.mailgun.org'
     EMAIL_PORT = 587
