@@ -11,7 +11,7 @@ class RegistrationForm(UserCreationForm):
     class Meta:
         model = Account
         fields = ('first_name', 'last_name', 'email', 'username', 'gender', 'kra_pin', 'id_no',
-                  'dob', 'phone', 'password', 'password2',)
+                  'dob', 'phone', 'password1', 'password2',)
         # fields = '__all__'
 
 

@@ -23,7 +23,7 @@ def registration_view(request):
             id_no = form.cleaned_data.get('id_no')
             dob = form.cleaned_data.get('dob')
             phone = form.cleaned_data.get('phone')
-            password = form.cleaned_data.get('password')
+            password = form.cleaned_data.get('password1')
 
             # authenticate the user if information is correct and valid
             account = authenticate(first_name=first_name, last_name=last_name, email=email,

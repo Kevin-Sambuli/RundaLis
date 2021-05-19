@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 
-from accounts.api.serializers import RegistrationSerializers, AccountPropertiesSerializer, ChangePasswordSerializer
+from accounts.api.serializers import RegistrationSerializer, AccountPropertiesSerializer, ChangePasswordSerializer
 from accounts.models import Account
 from rest_framework.authtoken.models import Token
 
@@ -16,6 +16,7 @@ from rest_framework.authtoken.models import Token
 # Register
 # Response: https://gist.github.com/mitchtabian/c13c41fa0f51b304d7638b7bac7cb694
 # Url: https://<your-domain>/api/account/register
+
 @api_view(['POST', ])
 # @permission_classes([])
 # @authentication_classes([])
@@ -52,7 +53,7 @@ def registration_view(request):
         #     data['response'] = 'Error'
         #     return Response(data)
 
-        serializer = RegistrationSerializers(data=request.data)
+        serializer = RegistrationSerializer(data=request.data)
 
         if serializer.is_valid():
             account = serializer.save()
