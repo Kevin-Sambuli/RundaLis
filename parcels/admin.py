@@ -19,7 +19,7 @@ from .models import Parcels, ParcelDetails
 class ParcelAdmin(LeafletGeoAdmin):
     list_display = ('lr_no', 'id', 'perimeter', 'area_ha', 'owner')
     search_fields = ('id', 'lr_no')
-    readonly_fields = ('lr_no', 'id', 'perimeter', 'area_ha', 'owner')
+    readonly_fields = ('lr_no', 'id', 'perimeter', 'area_ha') #,'owner')
     list_per_page = 10
     filter_horizontal = ()
     list_filter = ('lr_no', 'owner')
@@ -30,7 +30,7 @@ class ParcelDetailsAdmin(admin.ModelAdmin):
     list_display = ('parcel', 'tenure', 'encumbrances', 'land_use', 'improvements', 'registered')
     list_display_links = ('parcel',)
     list_per_page = 10
-    readonly_fields = ('parcel', 'tenure', 'encumbrances', 'land_use', 'improvements', 'registered')
+    # readonly_fields = ('parcel', 'tenure', 'encumbrances', 'land_use', 'improvements', 'registered')
     search_fields = ('land_use', 'parcel')
     filter_horizontal = ()
     list_filter = ('tenure',)

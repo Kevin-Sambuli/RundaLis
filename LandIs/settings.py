@@ -46,30 +46,30 @@ else:
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-ALLOWED_HOSTS = ['0c08c280dc9d.ngrok.io', '127.0.0.1', 'localhost']
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'LandIs',
-        'USER': 'postgres',
-        'HOST': 'localhost',
-        'PASSWORD': 'kevoh',
-        'PORT': '5432'
-    },
-}
-
+ALLOWED_HOSTS = ['https://rundalis.herokuapp.com/', '0c08c280dc9d.ngrok.io', '127.0.0.1', 'localhost']
 
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'd9lfigjp2lj980',
-#         'USER': 'dlkzpuzvqrzwfz',
-#         'HOST': 'ec2-54-159-175-113.compute-1.amazonaws.com',
-#         'PASSWORD': '33b2754d7e112e2e0997bf95355d9d4a7e71fe00cdb3f68d64af86c6cb1a9e64',
+#         'NAME': 'LandIs',
+#         'USER': 'postgres',
+#         'HOST': 'localhost',
+#         'PASSWORD': 'kevoh',
 #         'PORT': '5432'
 #     },
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'd5raml675lgp88',
+        'USER': 'sqdrtjajozetcu',
+        'HOST': 'ec2-18-214-208-89.compute-1.amazonaws.com',
+        'PASSWORD': '70cab36a0742c993927838fbc8a578d3e0859fba762d2eb09e02be0357ccb2ef',
+        'PORT': '5432'
+    },
+}
+
 
 # Application definition
 INSTALLED_APPS = [
