@@ -26,16 +26,16 @@ SECRET_KEY = 'j^5oh%l-(#4lsu63xhkuyogu!i&)untvwd430uhcvb4kvi70(l'
 DEBUG = True
 
 if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    EMAIL_HOST_USER = 'sambulikevin@gmail.com'
-    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-    # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    # EMAIL_HOST = 'smtp.gmail.com'
+    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     # EMAIL_HOST_USER = 'sambulikevin@gmail.com'
-    # EMAIL_HOST_PASSWORD = 'kevoh1995'
-    # EMAIL_USE_TLS = True
-    # EMAIL_PORT = 587
     # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'sambulikevin@gmail.com'
+    EMAIL_HOST_PASSWORD = 'kevoh1995'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 else:
     EMAIL_HOST = 'smtp.mailgun.org'
     EMAIL_PORT = 587
@@ -46,30 +46,18 @@ else:
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-ALLOWED_HOSTS = ['https://rundalis.herokuapp.com/', '0c08c280dc9d.ngrok.io', '127.0.0.1', 'localhost']
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'LandIs',
-#         'USER': 'postgres',
-#         'HOST': 'localhost',
-#         'PASSWORD': 'kevoh',
-#         'PORT': '5432'
-#     },
-# }
+ALLOWED_HOSTS = ['rundalis.herokuapp.com', '0c08c280dc9d.ngrok.io', '127.0.0.1', 'localhost']
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'd5raml675lgp88',
-        'USER': 'sqdrtjajozetcu',
-        'HOST': 'ec2-18-214-208-89.compute-1.amazonaws.com',
-        'PASSWORD': '70cab36a0742c993927838fbc8a578d3e0859fba762d2eb09e02be0357ccb2ef',
+        'NAME': 'LandIs',
+        'USER': 'postgres',
+        'HOST': 'localhost',
+        'PASSWORD': 'kevoh',
         'PORT': '5432'
     },
 }
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -92,14 +80,17 @@ INSTALLED_APPS = [
     'transaction',
     'payments',
 
-    'social_django',
+    # 'social_django',
     'rest_framework',
     'rest_framework.authtoken',
     # 'nairobi_hospitals_api',
     # 'crispy_forms',
 ]
 
+# user custom model setting
 AUTH_USER_MODEL = 'accounts.Account'
+# sign up form
+SIGNUP_FORM_CLASS = 'accounts.forms.RegistrationForm'
 
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

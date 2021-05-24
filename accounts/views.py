@@ -7,6 +7,14 @@ from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountU
 from .models import Account
 
 
+import africastalking
+username = "rundalis"
+api_key = "6fd1032dcebdbc0bf7d29d057238ee443ee8388e871aab6da7234f06ff8893bc"
+africastalking.initialize(username, api_key)
+africastalking.initialize(username, api_key)
+sms = africastalking.SMS
+
+
 # Create your views here.
 def registration_view(request):
     context = {}
@@ -35,6 +43,10 @@ def registration_view(request):
             message = f'Hi {first_name} {last_name},Thank you for registering to our services'
 
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email], fail_silently=False, )
+
+            # Use the service synchronously
+            response = sms.send(message, [phone])
+            print(response)
 
             # return redirect('success')
             return redirect('home')

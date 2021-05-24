@@ -15,7 +15,7 @@ sms = africastalking.SMS
 
 
 class send_sms:
-    sms = africastalking.SMS
+    # sms = africastalking.SMS
 
     def send(self):
         # TODO: Send message
@@ -24,12 +24,11 @@ class send_sms:
         # Set your message
         message = "Hey AT Ninja!"
         # Set your shortCode or senderId
-        sender = "AFRICASTALKINGA"
+        sender = "AFRICASTALKING"
         try:
             response = self.sms.send(message, recipients, sender)
             print(response['SMSMessageData'])
         except Exception as e:
             print(f'Sambuli, we have a problem: {e}')
-
 
 send_sms.send()

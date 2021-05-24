@@ -95,11 +95,12 @@ def search(request):
         try:
             parcel = request.GET['parcel']
             parc = Ownership.objects.get(parcel=parcel)
+            print('parc', parc.parcel)
             pd = ParcelDetails.objects.get(parcel=parcel)
-            # print(pd.tenure)
-            # print(pd.land_use)
-            # print(pd.improvements)
-            # print(pd.encumbrances)
+            print(pd.tenure)
+            print(pd.land_use)
+            print(pd.improvements)
+            print(pd.encumbrances)
 
             parcel_as_geojson = serialize('geojson', Parcels.objects.all())
             parcel_data = serialize('geojson', Parcels.objects.filter(id=parcel))
@@ -110,22 +111,25 @@ def search(request):
             context['details'] = pd
 
             own = Parcels.objects.get(id=parcel)
-            # print('owner name from parcels', own.owner_id)
-            # email = Account.objects.get(id=own.owner_id)
-            # context['email'] = email
-            # print('owner email', email.email)
-            # print('owner email', Account.objects.get(id=own.owner_id).email)
+            print('owner name from parcels', own.owner_id)
+            email = Account.objects.get(id=own.owner_id)
+            context['email'] = email
+            print('owner email', email.email)
+            print('owner email', Account.objects.get(id=own.owner_id).email)
 
-            send_mail(
-                'Ardhi Parcel Search',
-                f'''Hey, {Ownership.objects.get(parcel=parcel).owner}, {request.user} has requested to view your\n 
-                 land details, are you willing to allow him to view your land details.''',
-                settings.DEFAULT_FROM_EMAIL,
-                [Account.objects.get(id=own.owner_id).email],
-                fail_silently=False,
-            )
+            # send_mail(
+            #     'Ardhi Parcel Search',
+            #     f'''Hey, {Ownership.objects.get(parcel=parcel).owner}, {request.user} has requested to view your\n
+            #      land details, are you willing to allow him to view your land details.''',
+            #     settings.DEFAULT_FROM_EMAIL,
+            #     [Account.objects.get(id=own.owner_id).email],
+            #     fail_silently=False,
+            # )
+
             # context['full_names'] = parc.owner
-            context['full_names'] = Ownership.objects.get(parcel=parcel).owner
+
+            context['full_names'] = Ownership.objects.get(parcel=parcel)
+            # print("dsfd", Ownership.objects.get(parcel_id=parcel))
             context['email'] = Account.objects.get(id=own.owner_id)
         except:
             return HttpResponse('that parcel land you are searching doesnt exist')
